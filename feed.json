@@ -1,6 +1,8 @@
 {
     "version": "https://jsonfeed.org/version/1",
-    "title": "Hexo",
+    "title": null,
+    "subtitle": "",
+    "icon": "http://example.com/images/favicon.ico",
     "description": "",
     "home_page_url": "http://example.com",
     "items": [
@@ -9,8 +11,10 @@
             "url": "http://example.com/2024/08/29/%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5/",
             "title": "使用攻略",
             "date_published": "2024-08-29T11:24:27.000Z",
-            "content_html": "",
-            "tags": []
+            "content_html": "<h2 id=\"创建分类\"><a class=\"anchor\" href=\"#创建分类\">#</a> 创建分类</h2>\n<p><figure class=\"highlight plaintext\"><table><tr><td class=\"gutter\"><pre><span class=\"line\">1</span><br><span class=\"line\">2</span><br><span class=\"line\">3</span><br><span class=\"line\">4</span><br><span class=\"line\">5</span><br><span class=\"line\">6</span><br><span class=\"line\">7</span><br><span class=\"line\">8</span><br><span class=\"line\">9</span><br><span class=\"line\">10</span><br><span class=\"line\">11</span><br><span class=\"line\">12</span><br><span class=\"line\">13</span><br><span class=\"line\">14</span><br><span class=\"line\">15</span><br><span class=\"line\">16</span><br></pre></td><td class=\"code\"><pre><span class=\"line\">hexo new page XXX //创建分类</span><br><span class=\"line\">进入/source/XXX/index.md</span><br><span class=\"line\"></span><br><span class=\"line\">---------------------</span><br><span class=\"line\">title: 分类名</span><br><span class=\"line\">type: categories //自己添加，表示这是类型是分类</span><br><span class=\"line\">------------------------</span><br><span class=\"line\"></span><br><span class=\"line\">hexo n 文章名  //创建新文章</span><br><span class=\"line\">进入source/_posts/文件名.mk</span><br><span class=\"line\"></span><br><span class=\"line\">----------------------</span><br><span class=\"line\">title: 文章名</span><br><span class=\"line\">date: 2020-10-27 15:22:42</span><br><span class=\"line\">categories: 分类名</span><br><span class=\"line\">--------------------------</span><br></pre></td></tr></table></figure></p>\n<p>这样就完成了一个分类的创建了，并将博客归入 XXX 类中</p>\n",
+            "tags": [
+                "hexo使用攻略"
+            ]
         }
     ]
 }

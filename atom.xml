@@ -1,14 +1,23 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://example.com</id>
-    <title>Hexo</title>
+    <title></title>
+    <subtitle></subtitle>
+    <icon>http://example.com/images/favicon.ico</icon>
     <link href="http://example.com" />
+    <author>
+      <name>yuki zero</name>
+    </author>
     <updated>2024-08-29T11:24:27.000Z</updated>
     <entry>
         <id>http://example.com/2024/08/29/%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5/</id>
         <title>使用攻略</title>
         <link rel="alternate" href="http://example.com/2024/08/29/%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5/"/>
-        <content type="html"></content>
+        <content type="html">&lt;h2 id=&#34;创建分类&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#创建分类&#34;&gt;#&lt;/a&gt; 创建分类&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;hexo new page XXX //创建分类&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;进入/source/XXX/index.md&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;---------------------&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;title: 分类名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;type: categories //自己添加，表示这是类型是分类&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;------------------------&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;hexo n 文章名  //创建新文章&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;进入source/_posts/文件名.mk&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;----------------------&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;title: 文章名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;date: 2020-10-27 15:22:42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;categories: 分类名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--------------------------&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这样就完成了一个分类的创建了，并将博客归入 XXX 类中&lt;/p&gt;
+</content>
+        <category term="hexo使用攻略" scheme="http://example.com/tags/hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5/" />
         <updated>2024-08-29T11:24:27.000Z</updated>
     </entry>
 </feed>
