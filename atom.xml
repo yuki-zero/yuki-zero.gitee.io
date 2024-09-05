@@ -8,7 +8,36 @@
     <author>
       <name>yuki zero</name>
     </author>
-    <updated>2024-09-02T08:51:39.000Z</updated>
+    <updated>2024-09-04T09:18:42.000Z</updated>
+    <entry>
+        <id>http://example.com/2024/09/04/Makefile/</id>
+        <title>Makefile</title>
+        <link rel="alternate" href="http://example.com/2024/09/04/Makefile/"/>
+        <content type="html">&lt;h1 id=&#34;makefile简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#makefile简介&#34;&gt;#&lt;/a&gt; Makefile 简介&lt;/h1&gt;
+&lt;p&gt;​	make 和 Makefile 是 Linux 以及其他 Unix-like 系统中非常重要的工具，它们主要用于自动化编译和构建过程。通过学习和掌握 make 和 Makefile，可以极大地提高软件开发过程中的编译效率和自动化水平。&lt;/p&gt;
+&lt;p&gt;​	make 是一个命令行工具，用于解释和执行 Makefile 中的指令。当你运行 make 命令时，它会查找当前目录下的 Makefile（或 makefile，注意大小写、GNUmakefile）文件，并根据其中的指令来编译或构建项目。&lt;/p&gt;
+&lt;p&gt;​	当你运行 make 命令时，它默认会查找名为 Makefile（大写 M）的文件。如果该文件不存在，但存在一个名为 makefile（小写 m）的文件，make 通常不会使用它，除非你明确指定了文件名。使用 make -f XXX 命令指定文件&lt;/p&gt;
+&lt;h1 id=&#34;make命令工作流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#make命令工作流程&#34;&gt;#&lt;/a&gt; make 命令工作流程&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;读取 Makefile&lt;/strong&gt;：make 首先读取当前目录下的 Makefile (makefile,GNUmakefile)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;确定默认目标&lt;/strong&gt;：如果没有指定具体目标，make&lt;strong&gt; 会尝试构建第一个目标&lt;/strong&gt;（通常是可执行文件）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;检查依赖性&lt;/strong&gt;：对于每个目标，make 会检查其依赖文件是否比目标文件新。如果依赖文件更新，或者目标不存在，make 就会执行相应的规则来重建目标。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;执行命令&lt;/strong&gt;：根据规则中的命令编译或链接文件，直到所有目标都最新为止。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;makefile使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#makefile使用&#34;&gt;#&lt;/a&gt; Makefile 使用&lt;/h1&gt;
+&lt;p&gt;​	Makefile 是一个包含一系列构建规则的文件，它告诉 make 命令如何编译和链接源代码以生成可执行文件或库。Makefile 中定义了各种目标（target）、依赖（dependency）和命令（command）&lt;/p&gt;
+&lt;h2 id=&#34;常用符号&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常用符号&#34;&gt;#&lt;/a&gt; 常用符号&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight makefile&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 注释符号&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;:=  即时求值，变量在赋值时计算其值，之后引用不会再变化&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;=  延迟求值，每次引用变量时都会重新计算&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;?=  条件赋值操作符，用于在变量未被定义时才进行赋值；如果变量已经有值，则不会改变原来的值&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;+=  追加赋值操作符，用于将值追加到现有的变量值末尾&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$  用来引用变量和特殊字符&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$$  用来在 Makefile 的命令行中表示一个单独的 $ 字符。因为单个 $ 是特殊字符，用于变量替换，$$ 允许在命令行中输出一个 $ eg. @echo $$$$    &lt;span class=&#34;comment&#34;&gt;# 输出: $&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;*  通配符，匹配任何字符或字符串&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;?  通配符匹配单个字符&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[...]  匹配方括号中出现的任何字符&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%  通配符，匹配文件名的相同部分，用于简化规则定义&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable&#34;&gt;$@&lt;/span&gt;  目标文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable&#34;&gt;$^&lt;/span&gt;  所有依赖文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable&#34;&gt;$&amp;lt;&lt;/span&gt;  第一个依赖文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable&#34;&gt;$?&lt;/span&gt;  列出比目标文件更新的依赖文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable&#34;&gt;$+&lt;/span&gt;  列出所有依赖文件的列表（包括重复项）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable&#34;&gt;$*&lt;/span&gt;  匹配模式中主体文件名的部分，不包括扩展名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;  输出重定向，将命令的输出写入文件（会覆盖文件内容）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;  追加重定向，将命令的输出追加到文件末尾（不会覆盖现有内容）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;  输入重定向，将文件内容作为命令的输入&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;重定向是将命令的输入或输出从默认位置（通常是屏幕或标准输入）转移到其他位置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;条件语句&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#条件语句&#34;&gt;#&lt;/a&gt; 条件语句&lt;/h2&gt;
+&lt;p&gt;​	Makefile 支持条件语句，可以根据不同的条件执行不同的命令。条件语句的一般形式是：这里 ifeq 是一个条件指令，它比较两个参数是否相等。如果相等，则执行 commands；否则，执行 alternate commands（如果有的话）。&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight makefile&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;ifeq&lt;/span&gt; (arg1, arg2)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   commands&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   alternate commands&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;endif&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;例子&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#例子&#34;&gt;#&lt;/a&gt; 例子&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight makefile&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;76&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#------------------------------------下面都是在定义变量--------------------------------------&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CC := $&amp;#123;T_CC&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;BIM := hello_world&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;RM = rm -rf&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CP = cp -R&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ROOT_PATH = $&amp;#123;PWD&amp;#125;  &lt;span class=&#34;comment&#34;&gt;#没有提到的可能是其他文件定义的，并传进来的参数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;OUT_PATH := $&amp;#123;ROOT_PATH&amp;#125;/out&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;SYSTEM_BIM_PATH = $&amp;#123;T_ROOTFS_BIN_PATH&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;SYSTEM_LIB_PATH = $&amp;#123;T_ROOTFS_LIB_PATH&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;SYSTEM_SCR_PATH = $&amp;#123;T_ROOTFS_SCR_PATH&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# $(shell command)用于执行shell命令&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# -e 在shell中测试文件或者目录是否存在， ！ -e 表示文件或目录不存在&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#所以这句话意思是如果OUT_PATH目录不存在，则创建OUT_PATH目录，并设置权限为 775&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;shell&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;if&lt;/span&gt; [ ! -e $&amp;#123;OUT_PATH&amp;#125; ]; then mkdir -m 775 $&amp;#123;OUT_PATH&amp;#125;; fi)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;INC_ROOT_PATH =&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;INC_FLAGS := $&amp;#123;INC_ROOT_PATH&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;INCDIRS := &lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;addprefix&lt;/span&gt; -I, &lt;span class=&#34;variable&#34;&gt;$(INC_FLAGS)&lt;/span&gt;)&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;#addprefix用于添加前缀，即给INC_FLAGS所指的文件添加 -I前缀，这里为空&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LIB_ROOT_PATH = &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_FLAGS := $&amp;#123;LIB_ROOT_PATH&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LDDIRS := &lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;addprefix&lt;/span&gt; -L, &lt;span class=&#34;variable&#34;&gt;$(LD_FLAGS)&lt;/span&gt;)&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;#添加 -L前缀&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LIBS := &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LIBDIRS := &lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;addprefix&lt;/span&gt; -l, &lt;span class=&#34;variable&#34;&gt;$(LIBS)&lt;/span&gt;)&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;#添加 -l前缀&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;SRC_ROOT_PATH = .&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;SRC_FLAGS := $&amp;#123;SRC_ROOT_PATH&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;MFLAGS := MD P F&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# -MMD 生成 .d 依赖文件，但不生成 .d 文件的 .o 文件的规则。 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# -MP 为每个目标生成一个伪目标，以避免因删除目标文件而导致的错误。 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# -MF 指定依赖文件的输出路径和文件名。通常它会用目标文件名的 .d 文件作为依赖文件的名字。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;MFS := &lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;addprefix&lt;/span&gt; -M, &lt;span class=&#34;variable&#34;&gt;$(MFLAGS)&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# -fno-strict-aliasing：禁用严格别名规则。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# -O3：启用高级优化。 -g3：生成详细的调试信息。 -Wall：启用所有警告。 -c：仅编译，不链接。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CFLAGS := -fno-strict-aliasing -O3 -g3 -Wall -c $&amp;#123;MFS&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;OFLAGS := -fno-strict-aliasing -O3 -g3 -Wall -o&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#----------------------------------------------------------------------------------------&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;.PHONY : all clean cleanall install unistall &lt;span class=&#34;comment&#34;&gt;# .PHONY 伪目标，表示不是实际的文件名，而是用于执行某些操作的命令或规则。这样如果同名的文件已经存在，仍然会执行命令&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;all : $&amp;#123;OUT_PATH&amp;#125;/$&amp;#123;BIN&amp;#125;  &lt;span class=&#34;comment&#34;&gt;# all 目标文件  $&amp;#123;OUT_PATH&amp;#125;/$&amp;#123;BIN&amp;#125; 依赖文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# foreach 遍历 dir临时变量，类似于for循环里的i wildcard 在指定目录中查找&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 这句话的意思是 遍历SRC_FLAGS目录中的子目录，并查找所有子目录下的 .c文件，赋值给CSRC&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CSRC = &lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;foreach&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;dir&lt;/span&gt;, &lt;span class=&#34;variable&#34;&gt;$(SRC_FLAGS)&lt;/span&gt;, $(&lt;span class=&#34;built_in&#34;&gt;wildcard&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;$(dir)&lt;/span&gt;/*.c)&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#notdir 用于从文件路径中移除目录部分，只保留文件名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#这句话的意思是将CSRC中的.c扩展名转换为.o，然后移除目录部分，再在前面加上OUT_PATH/前缀&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#即令OBJECTS等于OUT_PATH/目录下与CSRC相同名字的.o文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;OBJECTS = &lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;addprefix&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;$(OUT_PATH)&lt;/span&gt;/, $(&lt;span class=&#34;built_in&#34;&gt;notdir&lt;/span&gt; $(CSRC:.C=.O)&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# vpath 指定文件的搜索路径&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# sort 对这些路径进行排序并去重&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#这句话表示在CSRC路径下查找所有.c文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;vpath&lt;/span&gt; %.c &lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;sort&lt;/span&gt; $(&lt;span class=&#34;built_in&#34;&gt;dir&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;$(CSRC)&lt;/span&gt;)&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# filter用于筛选 从OBJECTS中筛选出.o文件构建文件列表 该文件依赖于OUT_PATH的.o文件，.o文件又依赖于.c文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;filter&lt;/span&gt; %.o, $&amp;#123;OBJECTS&amp;#125;)&lt;/span&gt; : $&amp;#123;OUT_PATH&amp;#125;/%.o:%.c&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;comment&#34;&gt;# 根据.o文件生成对应的.d文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;variable&#34;&gt;$(CC)&lt;/span&gt; $&amp;#123;INCDIRS&amp;#125; $&amp;#123;LDDIRS&amp;#125; $&amp;#123;CFLAGS&amp;#125; $(@:%.O=%d) -MT &lt;span class=&#34;variable&#34;&gt;$@&lt;/span&gt; -O &lt;span class=&#34;variable&#34;&gt;$@&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;$&amp;lt;&lt;/span&gt; $&amp;#123;LIBDIRS&amp;#125; &lt;span class=&#34;comment&#34;&gt;#缩进一定要用Tab，不能用空格，会报错&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  目标文件             依赖文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable&#34;&gt;$(OUT_PATH)&lt;/span&gt;/$&amp;#123;BIN&amp;#125; : $&amp;#123;OBJECTS&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	$&amp;#123;CC&amp;#125; $&amp;#123;OFLAGS&amp;#125; &lt;span class=&#34;variable&#34;&gt;$@&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;$^&lt;/span&gt; $&amp;#123;INCDIRS&amp;#125; $&amp;#123;LDDIRS&amp;#125; $&amp;#123;LIBDIRS&amp;#125; &lt;span class=&#34;comment&#34;&gt;#根据依赖文件编译生成目标文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;variable&#34;&gt;$(&lt;span class=&#34;built_in&#34;&gt;shell&lt;/span&gt; $&amp;#123;CC&amp;#125; -v)&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;# 执行shell命令$&amp;#123;CC&amp;#125; -v&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# RM = rm -rf&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# @隐藏命令输出&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;section&#34;&gt;clean:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	@&lt;span class=&#34;variable&#34;&gt;$(RM)&lt;/span&gt; $&amp;#123;OUT_PATH&amp;#125;/*.o $&amp;#123;OUT_PATH&amp;#125;/*.d &lt;span class=&#34;comment&#34;&gt;#删除.o .d文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;section&#34;&gt;cleanall:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	@&lt;span class=&#34;variable&#34;&gt;$(RM)&lt;/span&gt; $&amp;#123;OUT_PATH&amp;#125;/*.o $&amp;#123;OUT_PATH&amp;#125;/*.d $&amp;#123;OUT_PATH&amp;#125;/$&amp;#123;BIN&amp;#125; &lt;span class=&#34;comment&#34;&gt;#删除.o .d文件和子目录BIN&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+        <category term="编程基础" scheme="http://example.com/categories/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" />
+        <category term="Makefile" scheme="http://example.com/tags/Makefile/" />
+        <updated>2024-09-04T09:18:42.000Z</updated>
+    </entry>
     <entry>
         <id>http://example.com/2024/09/02/OpenWrt%E7%AE%80%E4%BB%8B/</id>
         <title>OpenWrt简介</title>
@@ -34,6 +63,150 @@
 &lt;li&gt;包括常见的发行版如 Ubuntu、Fedora、CentOS 等，用于各种应用场景，从桌面环境到数据中心服务器。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;文件系统和存储&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#文件系统和存储&#34;&gt;#&lt;/a&gt; 文件系统和存储&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenWrt&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;通常使用只读文件系统或只读根文件系统（例如 squashfs），以提高稳定性和安全性。&lt;/li&gt;
+&lt;li&gt;配置文件和日志文件通常存储在可读写的部分（如 jffs2 或 overlay 文件系统）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一般 Linux 系统&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;使用全读写的文件系统，如 ext4、xfs、btrfs 等。&lt;/li&gt;
+&lt;li&gt;系统可以非常灵活地管理文件和存储设备。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;软件包管理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#软件包管理&#34;&gt;#&lt;/a&gt; 软件包管理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenWrt&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;使用  &lt;code&gt;opkg&lt;/code&gt;  包管理器来安装、更新和删除软件包。&lt;/li&gt;
+&lt;li&gt;主要关注网络相关软件和轻量级应用。&lt;/li&gt;
+&lt;li&gt;软件包通常经过专门优化，以适应资源有限的设备。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一般 Linux 系统&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;使用各种包管理器，如  &lt;code&gt;apt&lt;/code&gt; （Debian/Ubuntu）、 &lt;code&gt;yum&lt;/code&gt; / &lt;code&gt;dnf&lt;/code&gt; （CentOS/Fedora）、 &lt;code&gt;zypper&lt;/code&gt; （openSUSE）等。&lt;/li&gt;
+&lt;li&gt;提供广泛的软件包和应用程序，覆盖各种用途。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;用户界面&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#用户界面&#34;&gt;#&lt;/a&gt; 用户界面&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenWrt&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;通常通过 Web 界面（LuCI）进行配置和管理。&lt;/li&gt;
+&lt;li&gt;命令行界面也可用，但通常用于高级配置和调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一般 Linux 系统&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;提供图形用户界面（如 GNOME、KDE）和命令行界面。&lt;/li&gt;
+&lt;li&gt;用户可以根据需求选择和配置不同的桌面环境和应用程序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;系统结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#系统结构&#34;&gt;#&lt;/a&gt; 系统结构&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenWrt&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;内核和驱动程序针对网络硬件进行优化，支持广泛的路由器和网络设备。&lt;/li&gt;
+&lt;li&gt;有时会进行内核裁剪，以减少内存占用和提高性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一般 Linux 系统&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;提供广泛的硬件支持，适用于各种计算设备和外围设备。&lt;/li&gt;
+&lt;li&gt;内核通常包含更多的功能和驱动程序，以支持各种硬件和用途。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;配置与管理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#配置与管理&#34;&gt;#&lt;/a&gt; 配置与管理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenWrt&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;配置文件通常存储在  &lt;code&gt;/etc/config&lt;/code&gt;  目录下，使用 UCI（Unified Configuration Interface）进行管理。&lt;/li&gt;
+&lt;li&gt;配置更改通常需要使用  &lt;code&gt;uci&lt;/code&gt;  工具并提交更改。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一般 Linux 系统&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;配置文件分散在多个目录（如  &lt;code&gt;/etc&lt;/code&gt; ）中。&lt;/li&gt;
+&lt;li&gt;许多配置文件采用标准格式，如  &lt;code&gt;ini&lt;/code&gt; 、 &lt;code&gt;yaml&lt;/code&gt;  或  &lt;code&gt;json&lt;/code&gt; ，并且可能需要手动编辑&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	总体来说，OpenWrt 是一个专为嵌入式设备设计的 Linux 发行版，重点在于网络功能和优化，而一般 Linux 系统则更为通用，旨在支持广泛的应用和硬件设备。&lt;/p&gt;
+&lt;h1 id=&#34;openwrt系统概述&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#openwrt系统概述&#34;&gt;#&lt;/a&gt; OpenWrt 系统概述&lt;/h1&gt;
+&lt;h2 id=&#34;openwrt目录结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#openwrt目录结构&#34;&gt;#&lt;/a&gt; OpenWrt 目录结构&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86176%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240902214155382.png&#34; alt=&#34;image-20240902214155382&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;config：存放整个系统的配置文件&lt;/li&gt;
+&lt;li&gt;include：openwrt 的.mk 文件都放在这里&lt;/li&gt;
+&lt;li&gt;package：存放软件包，自己添加的应用层包也可以放在这里&lt;/li&gt;
+&lt;li&gt;target：openwrt 的源码可以编译出各个平台适用的二进制文件，各平台在这个目录里定义了 firmware 和 kernel 的编译过程&lt;/li&gt;
+&lt;li&gt;script：存放了一些脚本，使用了 bash, python, perl 等多种脚本语言；编译过程中，用于第三方软件包管理的 feeds 文件也是在这个目录当中。在编译过程中，使用到的脚本也统一放在这个目录中&lt;/li&gt;
+&lt;li&gt;toolchain：交叉编译链软件包&lt;/li&gt;
+&lt;li&gt;tools：编译时，主机需要使用一些工具软件，tools 里包含了获取和编译这些工具的命令。软件包里面有 Makefile 文件&lt;/li&gt;
+&lt;li&gt;feeds：默认的 feeds 下载有 packages、management、luci、routing、telephony。安装软件包步骤如下：
+&lt;ul&gt;
+&lt;li&gt;开源码根目录下面的 feeds.conf.default 文件，去掉相应软件包前面的 #号&lt;/li&gt;
+&lt;li&gt;更新源: ./scripts/feeds update -a&lt;/li&gt;
+&lt;li&gt;安装下载好的包: ./scripts/feeds install –a&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;build_dir：下面包含三个文件夹，编译时将在这几个文件夹中展开软件包进行编译
+&lt;ul&gt;
+&lt;li&gt;host：该文件夹中编译主机使用的工具软件&lt;/li&gt;
+&lt;li&gt;toolchain-XXX：编译交叉工具链将在这个目录下展开并编译&lt;/li&gt;
+&lt;li&gt;target-XXX：目标平台的软件包和内核将在这里展开并进行编译&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;bin：编译完成的 .bin .ipk 二进制文件将被保存在这里&lt;/li&gt;
+&lt;li&gt;dl：编译过程中下载的源代码包保存在这里&lt;/li&gt;
+&lt;li&gt;tmp：编译过程中产生的大量临时文件 (依赖关系) 被保存在这里&lt;/li&gt;
+&lt;li&gt;staging_dir：下面的子目录和 build_dir 相同，用于保存在 build_dir 中展开编译的编译结果&lt;/li&gt;
+&lt;li&gt;logs：编译过程中产生错误就会有这个目录，用于存放错误信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;openwrt固件编译过程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#openwrt固件编译过程&#34;&gt;#&lt;/a&gt; OpenWrt 固件编译过程&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;配置：make menuconfig 选择需要的平台和需要的工具模块&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载：下载所有选中的软件代码压缩包&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;编译工具：对 toolchain 和 tools 进行编译，编译得到的软件会在后续编译过程中被使用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;编译 ipk：&lt;/p&gt;
+&lt;p&gt;1）对内核模块进行编译，部分内核模块形成独立 ipk&lt;/p&gt;
+&lt;p&gt;2）编译 target 目录下的各个软件包成为 ipk&lt;/p&gt;
+&lt;p&gt;3）编译 package 目录下的各个软件包成为 ipk，并安装到文件系统中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;编译内核：编译内核，压缩内核，用 mkimage 工具在内核前生成一个 bootloader 可以识别的头部&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;固件打包：将文件系统和内核链接，制成镜像文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;单编译某个组件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单编译某个组件&#34;&gt;#&lt;/a&gt; 单编译某个组件&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;内核模块：make package/kernel/linux/compile&lt;/li&gt;
+&lt;li&gt;内核：make target/linux/compile&lt;/li&gt;
+&lt;li&gt;Package：make package/xxx/{clean,prepare,compile} V=s&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;openwrt三大组件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#openwrt三大组件&#34;&gt;#&lt;/a&gt; OpenWrt 三大组件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;内核：OpenWrt 使用 Linux 内核，这使得它可以支持多种硬件平台和设备。内核负责管理系统的硬件资源，包括 CPU、内存和输入输出设备。&lt;/li&gt;
+&lt;li&gt;用户空间程序：这些程序提供了系统的主要功能，包括各种服务、应用程序和配置工具。OpenWrt 的用户空间程序通常包括网络配置工具、文件系统管理工具、以及各种应用程序（如  &lt;code&gt;dnsmasq&lt;/code&gt; 、 &lt;code&gt;firewall&lt;/code&gt; 、 &lt;code&gt;opkg&lt;/code&gt;  包管理器等）。&lt;/li&gt;
+&lt;li&gt;软件包管理系统：OpenWrt 使用  &lt;code&gt;opkg&lt;/code&gt;  作为其包管理器，这允许用户从软件仓库中安装、更新和删除软件包。 &lt;code&gt;opkg&lt;/code&gt;  是一个轻量级的包管理系统，用于管理和配置 OpenWrt 系统上的各种软件包和应用程序。&lt;/li&gt;
 &lt;/ul&gt;
 </content>
         <category term="OpenWrt" scheme="http://example.com/categories/OpenWrt/" />
